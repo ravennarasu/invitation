@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>You're Invited 💖</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Montserrat:wght@400;700&display=swap');
+
+  body {
+    margin: 0;
+    background: #ffe4ec;
+    font-family: 'Montserrat', sans-serif;
+    color: #9c2658;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .invitation-card {
+    background: #fff0f6;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+    padding: 30px 40px;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+  }
+
+  .invitation-card::before {
+    content: "💌";
+    font-size: 4rem;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    opacity: 0.15;
+  }
+
+  h1 {
+    font-family: 'Sacramento', cursive;
+    font-size: 3.5rem;
+    margin-bottom: 5px;
+    color: #c2185b;
+  }
+
+  p.intro {
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+
+  img.event-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(255, 105, 180, 0.25);
+    margin-bottom: 25px;
+  }
+
+  .itinerary {
+    text-align: left;
+    margin-bottom: 30px;
+  }
+
+  .itinerary h2 {
+    font-family: 'Sacramento', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #c2185b;
+    border-bottom: 2px solid #ff69b4;
+    display: inline-block;
+  }
+
+  .event-item {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    padding-left: 15px;
+    position: relative;
+  }
+
+  .event-item::before {
+    content: "♥";
+    color: #ff69b4;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .footer-note {
+    font-size: 1rem;
+    color: #9c2658;
+    font-style: italic;
+  }
+
+  @media (max-width: 640px) {
+    .invitation-card {
+      padding: 20px 25px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .itinerary h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="invitation-card">
+    <h1>You're Invited 💞</h1>
+    <p class="intro">Please join me for a special date filled with love and laughter.</p>
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Romantic Date" class="event-image" />
+
+    <div class="itinerary">
+      <h2>Itinerary</h2>
+      <div class="event-item"><strong>6:00 PM:</strong> Meet at the lovely <em>Rose Garden</em></div>
+      <div class="event-item"><strong>7:00 PM:</strong> Dinner at <em>La Petite Table</em></div>
+      <div class="event-item"><strong>9:00 PM:</strong> Moonlit walk by the lake</div>
+      <div class="event-item"><strong>10:00 PM:</strong> Surprise dessert & cozy talks</div>
+    </div>
+
+    <div class="footer-note">Can't wait to spend this magical evening with you! 💖</div>
+  </div>
+</body>
+</html>

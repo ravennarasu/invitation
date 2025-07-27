@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be Mine?</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #ffe4ec;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    #container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    img.header-image {
+      width: 450px;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      color: #c2185b;
+      font-size: 3em;
+      margin-bottom: 60px;
+    }
+
+    #message {
+      font-size: 1.5em;
+      color: #9c2658;
+      min-height: 1.5em;
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+
+    #hint {
+      font-size: 1.2em;
+      color: #9c2658;
+      margin-top: 10px;
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+
+    button {
+      padding: 20px 60px;
+      font-size: 24px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #yes {
+      background: #ff69b4;
+      color: white;
+      box-shadow: 0 5px 15px rgba(255,105,180,0.4);
+      position: absolute;
+      left: 35%; /* Moved to the left */
+      top: 70%;
+    }
+
+    #yes:hover {
+      background: #ff85c1;
+    }
+
+    #no {
+      background: #ffc0cb;
+      color: #900;
+      box-shadow: 0 5px 15px rgba(255,192,203,0.4);
+      position: absolute;
+      left: 55%;
+      top: 70%;
+      transition: left 0.1s, top 0.1s;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <img src="cute.jfif" alt="Sweet Couple" class="header-image">
+    <div id="hint"></div>
+    <h1>Will you go on a date with me? 💞</h1>
+    <div id="message"></div>
+
+    <!-- Independent Yes and No buttons -->
+    <button id="yes">Yes 💘</button>
+    <button id="no">No 🙈</button>
+  </div>
+
+  <!-- js-confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+  <script>
+    const noButton = document.getElementById("no");
+    const yesButton = document.getElementById("yes");
+    const message = document.getElementById("message");
+    const hint = document.getElementById("hint");
+    const jsConfetti = new JSConfetti();
+
+    const hints = [
+      "Pretty please? 🌸",
+      "Just one chance?",
+      "I promise it's fun! 🎉",
+      "I'll be so happy!",
+      "Think of our memories…",
+      "Please say yes 💖"
+    ];
+
+    let isYesClicked = false;
+
+yesButton.addEventListener("click", async () => {
+  isYesClicked = true;
+  await jsConfetti.addConfetti({
+    emojis: ['💘', '🌸', '🎉'],
+    confettiColors: ['#ff0a54', '#ff477e', '#ff7096'],
+    confettiNumber: 200,
+  });
+  // Redirect after confetti animation
+  window.location.href = "itinerary.html";
+});
+
+
+    noButton.addEventListener("mouseover", (e) => {
+      if (isYesClicked) return;
+
+      const container = document.getElementById("container");
+      const maxX = container.clientWidth - noButton.offsetWidth;
+      const maxY = container.clientHeight - noButton.offsetHeight;
+
+      let newX = Math.random() * maxX;
+      let newY = Math.random() * maxY;
+
+      noButton.style.left = `${newX}px`;
+      noButton.style.top = `${newY}px`;
+
+      hint.style.opacity = 1;
+      hint.textContent = hints[Math.floor(Math.random() * hints.length)];
+    });
+  </script>
+</body>
+</html>
