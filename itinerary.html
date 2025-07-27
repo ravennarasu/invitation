@@ -1,133 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>You're Invited 💖</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Montserrat:wght@400;700&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>You're Invited 💖</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Montserrat:wght@400;700&display=swap');
 
-  body {
-    margin: 0;
-    background: #ffe4ec;
-    font-family: 'Montserrat', sans-serif;
-    color: #9c2658;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-  }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
+      background: #ffe4ec;
+      color: #9c2658;
+    }
 
-  .invitation-card {
-    background: #fff0f6;
-    border-radius: 20px;
-    max-width: 600px;
-    width: 100%;
-    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
-    padding: 30px 40px;
-    box-sizing: border-box;
-    text-align: center;
-    position: relative;
-  }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  .invitation-card::before {
-    content: "💌";
-    font-size: 4rem;
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    opacity: 0.15;
-  }
-
-  h1 {
-    font-family: 'Sacramento', cursive;
-    font-size: 3.5rem;
-    margin-bottom: 5px;
-    color: #c2185b;
-  }
-
-  p.intro {
-    font-size: 1.2rem;
-    margin-top: 0;
-    margin-bottom: 30px;
-    font-weight: 600;
-  }
-
-  img.event-image {
-    width: 100%;
-    max-height: 300px;
-    object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0 6px 18px rgba(255, 105, 180, 0.25);
-    margin-bottom: 25px;
-  }
-
-  .itinerary {
-    text-align: left;
-    margin-bottom: 30px;
-  }
-
-  .itinerary h2 {
-    font-family: 'Sacramento', cursive;
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-    color: #c2185b;
-    border-bottom: 2px solid #ff69b4;
-    display: inline-block;
-  }
-
-  .event-item {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    padding-left: 15px;
-    position: relative;
-  }
-
-  .event-item::before {
-    content: "♥";
-    color: #ff69b4;
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-
-  .footer-note {
-    font-size: 1rem;
-    color: #9c2658;
-    font-style: italic;
-  }
-
-  @media (max-width: 640px) {
     .invitation-card {
-      padding: 20px 25px;
+      background: #fff0f6;
+      border-radius: 20px;
+      width: 95%;
+      max-width: 600px;
+      max-height: 95vh;
+      box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+      padding: 20px 30px;
+      box-sizing: border-box;
+      text-align: center;
+      position: relative;
+      overflow-y: auto;
+    }
+
+    .invitation-card::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    .invitation-card::before {
+      content: "💌";
+      font-size: 4rem;
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      opacity: 0.15;
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-family: 'Sacramento', cursive;
+      font-size: 3.2rem;
+      margin-bottom: 5px;
+      color: #c2185b;
+    }
+
+    p.intro {
+      font-size: 1.1rem;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    img.event-image {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(255, 105, 180, 0.25);
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .itinerary {
+      text-align: left;
+      margin-bottom: 15px;
     }
 
     .itinerary h2 {
+      font-family: 'Sacramento', cursive;
       font-size: 2rem;
+      margin-bottom: 10px;
+      color: #c2185b;
+      border-bottom: 2px solid #ff69b4;
+      display: inline-block;
     }
-  }
-</style>
+
+    .event-item {
+      margin-bottom: 12px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .event-item::before {
+      content: "♥";
+      color: #ff69b4;
+      position: absolute;
+      left: 0;
+    }
+
+    .event-text {
+      flex: 1;
+    }
+
+    .event-item img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .footer-note {
+      font-size: 0.95rem;
+      color: #9c2658;
+      font-style: italic;
+      margin-top: 10px;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 80%;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    @keyframes zoom {
+      from {transform: scale(0.7)} 
+      to {transform: scale(1)}
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 2.4rem; }
+      .itinerary h2 { font-size: 1.7rem; }
+      .event-item img { width: 50px; height: 50px; }
+    }
+  </style>
 </head>
 <body>
   <div class="invitation-card">
     <h1>You're Invited 💞</h1>
     <p class="intro">Please join me for a special date filled with love and laughter.</p>
-    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Romantic Date" class="event-image" />
+    <img src="place.png" class="event-image" alt="Event Place" onclick="openModal(this.src)" />
 
     <div class="itinerary">
       <h2>Itinerary</h2>
-      <div class="event-item"><strong>6:00 PM:</strong> Meet at the lovely <em>Rose Garden</em></div>
-      <div class="event-item"><strong>7:00 PM:</strong> Dinner at <em>La Petite Table</em></div>
-      <div class="event-item"><strong>9:00 PM:</strong> Moonlit walk by the lake</div>
-      <div class="event-item"><strong>10:00 PM:</strong> Surprise dessert & cozy talks</div>
+      <div class="event-item">
+        <div class="event-text"><strong>11:00 AM:</strong> Lunch at <em>Din Tai Fung</em></div>
+        <img src="dtf.webp" alt="Din Tai Fung" onclick="openModal(this.src)" />
+      </div>
+      <div class="event-item">
+        <div class="event-text"><strong>1:00 PM:</strong> Coffee at <em>Cooper's Coffee Haus</em></div>
+        <img src="cooper.jpg" alt="Cooper's Coffee Haus" onclick="openModal(this.src)" />
+      </div>
+      <div class="event-item">
+        <div class="event-text"><strong>3:00 PM:</strong> Watch <em>Nobody 2</em></div>
+        <img src="movie.webp" alt="Nobody 2" onclick="openModal(this.src)" />
+      </div>
+      <div class="event-item">
+        <div class="event-text"><strong>5:00 PM:</strong> Stroll around <em>Festival Mall Alabang</em></div>
+        <img src="mall.jpg" alt="Cooper's Coffee Haus" onclick="openModal(this.src)" />
+      </div>
     </div>
 
     <div class="footer-note">Can't wait to spend this magical evening with you! 💖</div>
   </div>
+
+  <!-- Modal -->
+  <div id="imgModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
+
+  <script>
+    function openModal(src) {
+      const modal = document.getElementById("imgModal");
+      const modalImg = document.getElementById("modalImage");
+      modal.style.display = "block";
+      modalImg.src = src;
+    }
+
+    function closeModal() {
+      document.getElementById("imgModal").style.display = "none";
+    }
+  </script>
 </body>
 </html>
