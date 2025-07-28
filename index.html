@@ -2,8 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Be Mine?</title>
+  <link rel="icon" href="favicon.ico">
+  <meta property="og:title" content="You're Invited 💖">
+  <meta property="og:image" content="cute.jfif">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Segoe+UI&display=swap');
+
     html, body {
       height: 100%;
       margin: 0;
@@ -24,7 +30,8 @@
     }
 
     img.header-image {
-      width: 450px;
+      width: 90%;
+      max-width: 450px;
       height: auto;
       border-radius: 15px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -34,7 +41,7 @@
     h1 {
       color: #c2185b;
       font-size: 3em;
-      margin-bottom: 60px;
+      margin-bottom: 20px;
     }
 
     #message {
@@ -53,6 +60,12 @@
       opacity: 0;
     }
 
+    #countdown {
+      font-size: 1.1em;
+      margin: 15px 0;
+      color: #c2185b;
+    }
+
     button {
       padding: 20px 60px;
       font-size: 24px;
@@ -67,7 +80,7 @@
       color: white;
       box-shadow: 0 5px 15px rgba(255,105,180,0.4);
       position: absolute;
-      left: 35%; /* Moved to the left */
+      left: 35%;
       top: 70%;
     }
 
@@ -82,23 +95,34 @@
       position: absolute;
       left: 55%;
       top: 70%;
-      transition: left 0.1s, top 0.1s;
+      transition: left 0.05s, top 0.05s;
+    }
+
+    .heart {
+      position: absolute;
+      pointer-events: none;
+      animation: float 0.5s ease-out forwards;
+    }
+
+    @keyframes float {
+      0% {transform: scale(1); opacity: 1;}
+      100% {transform: scale(1.6) translateY(-40px); opacity: 0;}
     }
   </style>
 </head>
 <body>
   <div id="container">
-    <img src="cute.jfif" alt="Sweet Couple" class="header-image">
-    <div id="hint"></div>
+    <img src="cute.jfif" alt="Sweet Couple smiling and holding hands" class="header-image">
+    <div id="countdown"></div>
     <h1>Will you go on a date with me? 💞</h1>
     <div id="message"></div>
-
-    <!-- Independent Yes and No buttons -->
-    <button id="yes">Yes 💘</button>
-    <button id="no">No 🙈</button>
+    <div id="hint"></div>
+    <button id="yes" aria-label="Say Yes">Yes 💘</button>
+    <button id="no" aria-label="Say No">No 🙈</button>
   </div>
 
-  <!-- js-confetti library -->
+  <audio id="confettiSound" src="https://www.myinstants.com/media/sounds/pop.mp3" preload="auto"></audio>
+
   <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
   <script>
     const noButton = document.getElementById("no");
@@ -106,6 +130,7 @@
     const message = document.getElementById("message");
     const hint = document.getElementById("hint");
     const jsConfetti = new JSConfetti();
+    const sound = document.getElementById("confettiSound");
 
     const hints = [
       "Pretty please? 🌸",
@@ -118,34 +143,61 @@
 
     let isYesClicked = false;
 
-yesButton.addEventListener("click", async () => {
-  isYesClicked = true;
-  await jsConfetti.addConfetti({
-    emojis: ['💘', '🌸', '🎉'],
-    confettiColors: ['#ff0a54', '#ff477e', '#ff7096'],
-    confettiNumber: 200,
-  });
-  // Redirect after confetti animation
-  window.location.href = "itinerary.html";
-});
-
+    yesButton.addEventListener("click", async () => {
+      isYesClicked = true;
+      await jsConfetti.addConfetti({
+        emojis: ['💘', '🌸', '🎉'],
+        confettiColors: ['#ff0a54', '#ff477e', '#ff7096'],
+        confettiNumber: 200,
+      });
+      window.location.href = "itinerary.html";
+    });
 
     noButton.addEventListener("mouseover", (e) => {
       if (isYesClicked) return;
-
       const container = document.getElementById("container");
       const maxX = container.clientWidth - noButton.offsetWidth;
       const maxY = container.clientHeight - noButton.offsetHeight;
-
       let newX = Math.random() * maxX;
       let newY = Math.random() * maxY;
-
       noButton.style.left = `${newX}px`;
       noButton.style.top = `${newY}px`;
-
       hint.style.opacity = 1;
       hint.textContent = hints[Math.floor(Math.random() * hints.length)];
     });
+
+    document.addEventListener("mousemove", (e) => {
+      const heart = document.createElement("div");
+      heart.textContent = "💖";
+      heart.className = "heart";
+      heart.style.left = `${e.pageX}px`;
+      heart.style.top = `${e.pageY}px`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 500);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") yesButton.click();
+    });
+
+    // Countdown timer to specific date
+    const countdown = document.getElementById("countdown");
+    const eventDate = new Date("2025-08-16T11:00:00");
+    function updateCountdown() {
+      const now = new Date();
+      const diff = eventDate - now;
+      if (diff <= 0) {
+        countdown.textContent = "It's date time! 💖";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+      countdown.textContent = `Countdown: ${days}d ${hours}h ${mins}m ${secs}s`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
