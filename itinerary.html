@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>You're Invited 💖</title>
+  <link rel="icon" href="favicon.ico">
+  <meta property="og:title" content="You're Invited 💖">
+  <meta property="og:image" content="place.png">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Montserrat:wght@400;700&display=swap');
 
@@ -125,6 +128,15 @@
       margin-top: 10px;
     }
 
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #c2185b;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
     /* Modal */
     .modal {
       display: none;
@@ -156,9 +168,15 @@
       cursor: pointer;
     }
 
-    @keyframes zoom {
-      from {transform: scale(0.7)} 
-      to {transform: scale(1)}
+    .heart {
+      position: absolute;
+      pointer-events: none;
+      animation: float 0.5s ease-out forwards;
+    }
+
+    @keyframes float {
+      0% {transform: scale(1); opacity: 1;}
+      100% {transform: scale(1.6) translateY(-40px); opacity: 0;}
     }
 
     @media (max-width: 640px) {
@@ -178,23 +196,24 @@
       <h2>Itinerary</h2>
       <div class="event-item">
         <div class="event-text"><strong>11:00 AM:</strong> Lunch at <em>Din Tai Fung</em></div>
-        <img src="dtf.webp" alt="Din Tai Fung" onclick="openModal(this.src)" />
+        <img src="dtf.webp" alt="Din Tai Fung" onclick="openModal(this.src)" loading="lazy" />
       </div>
       <div class="event-item">
         <div class="event-text"><strong>1:00 PM:</strong> Coffee at <em>Cooper's Coffee Haus</em></div>
-        <img src="cooper.jpg" alt="Cooper's Coffee Haus" onclick="openModal(this.src)" />
+        <img src="cooper.jpg" alt="Cooper's Coffee Haus" onclick="openModal(this.src)" loading="lazy" />
       </div>
       <div class="event-item">
         <div class="event-text"><strong>3:00 PM:</strong> Watch <em>Nobody 2</em></div>
-        <img src="movie.webp" alt="Nobody 2" onclick="openModal(this.src)" />
+        <img src="movie.webp" alt="Nobody 2 Movie Poster" onclick="openModal(this.src)" loading="lazy" />
       </div>
       <div class="event-item">
         <div class="event-text"><strong>5:00 PM:</strong> Stroll around <em>Festival Mall Alabang</em></div>
-        <img src="mall.jpg" alt="Cooper's Coffee Haus" onclick="openModal(this.src)" />
+        <img src="mall.jpg" alt="Festival Mall Alabang" onclick="openModal(this.src)" loading="lazy" />
       </div>
     </div>
 
-    <div class="footer-note">Can't wait to spend this magical day with you Ella! 💖</div>
+    <div class="footer-note">Can't wait to spend this magical evening with you Ella! 💖</div>
+    <a href="invitation.html" class="back-link">← Back to Invitation</a>
   </div>
 
   <!-- Modal -->
@@ -214,6 +233,16 @@
     function closeModal() {
       document.getElementById("imgModal").style.display = "none";
     }
+
+    document.addEventListener("mousemove", (e) => {
+      const heart = document.createElement("div");
+      heart.textContent = "💖";
+      heart.className = "heart";
+      heart.style.left = `${e.pageX}px`;
+      heart.style.top = `${e.pageY}px`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 500);
+    });
   </script>
 </body>
 </html>
