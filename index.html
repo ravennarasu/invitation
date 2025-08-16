@@ -29,13 +29,45 @@
       align-items: center;
     }
 
-    img.header-image {
+    .image-wrapper {
+      position: relative;
+      display: inline-block;
       width: 90%;
       max-width: 450px;
-      height: auto;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       margin-bottom: 30px;
+      border-radius: 15px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 15px;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 15px;
+    }
+
+    .overlay span {
+      color: #fff;
+      font-size: 1.3rem;
+      font-family: 'Sacramento', cursive;
+    }
+
+    .image-wrapper:hover .overlay {
+      opacity: 1;
     }
 
     h1 {
@@ -112,7 +144,12 @@
 </head>
 <body>
   <div id="container">
-    <img src="cute.jfif" alt="Sweet Couple smiling and holding hands" class="header-image">
+    <!-- Clickable cover photo with overlay -->
+    <a href="gallery.html" class="image-wrapper">
+      <img src="cute.jfif" alt="Sweet Couple smiling and holding hands">
+      <div class="overlay"><span>View Memories 💖</span></div>
+    </a>
+
     <div id="countdown"></div>
     <h1>Will you go on a date with me? 💞</h1>
     <div id="message"></div>
