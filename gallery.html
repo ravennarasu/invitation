@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Date Memories 💖</title>
+  <link rel="icon" href="favicon.ico">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Montserrat:wght@400;700&display=swap');
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #ffe4ec;
+      font-family: 'Montserrat', sans-serif;
+      color: #9c2658;
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Sacramento', cursive;
+      font-size: 3rem;
+      color: #c2185b;
+      margin: 20px 0 10px;
+      text-align: center;
+    }
+
+    .intro-note {
+      font-family: 'Sacramento', cursive;
+      font-size: 1.8rem;
+      color: #c2185b;
+      text-align: center;
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+
+    /* Styled Spotify */
+    .spotify-player {
+      margin: 20px auto 40px;
+      max-width: 400px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(255,105,180,0.4);
+      animation: floaty 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes floaty {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(-6px); }
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1000px;
+      z-index: 2;
+    }
+
+    .gallery-item {
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+      text-align: center;
+      font-size: 0.9rem;
+      color: #c2185b;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    .gallery-item video {
+      width: 100%;
+      height: auto;
+      max-height: 220px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    /* Fireflies */
+    .firefly {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #fffacd;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.7;
+      box-shadow: 0 0 12px 6px rgba(255, 250, 205, 0.6);
+      animation: drift 10s infinite ease-in-out alternate,
+                 twinkle 2s infinite ease-in-out alternate;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(0) translateX(0); }
+      to { transform: translateY(-120px) translateX(80px); }
+    }
+
+    @keyframes twinkle {
+      0%   { opacity: 0.2; transform: scale(0.8); }
+      50%  { opacity: 1;   transform: scale(1.2); }
+      100% { opacity: 0.4; transform: scale(0.9); }
+    }
+
+    .letter-container {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .letter-container img {
+      width: 120px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      animation: bounce 2s infinite, glow 3s infinite alternate;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 6px #ffb6c1); }
+      to { filter: drop-shadow(0 0 15px #ff69b4); }
+    }
+
+    /* Letter modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff0f6 url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      background-size: cover;
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 600px;
+      text-align: center;
+      font-family: 'Sacramento', cursive;
+      font-size: 1.7rem;
+      color: #c2185b;
+      line-height: 1.6;
+      position: relative;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      border: 2px solid #ffb6c1;
+    }
+
+    .modal .close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 30px;
+      color: #c2185b;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Our Beautiful Date 💞</h1>
+  <div class="intro-note">
+    That day with you was pure magic ✨<br>
+    Every smile, every laugh, every little glance —<br>
+    I want to remember them forever. 💕
+  </div>
+
+  <!-- Romantic Spotify Player -->
+  <div class="spotify-player">
+    <iframe style="border-radius:12px" 
+      src="https://open.spotify.com/embed/track/5CBqLg9XdeEHcknJX0fZIJ" 
+      width="100%" height="152" frameBorder="0" 
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+    </iframe>
+  </div>
+
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="cooper.jpeg" alt="Cooper's Coffee Haus" onclick="openModal(this.src)">
+      <p>First stop ☕</p>
+    </div>
+    <div class="gallery-item">
+      <img src="cooper1.jpeg" alt="Breakfast" onclick="openModal(this.src)">
+      <p>Yummy breakfast 💞</p>
+    </div>
+    <div class="gallery-item">
+      <img src="herpov.jpeg" alt="Her POV" onclick="openModal(this.src)">
+      <p>Her pov 🤍</p>
+    </div>
+    <div class="gallery-item">
+      <img src="hispov.jpg" alt="His POV" onclick="openModal(this.src)">
+      <p>His pov 🖤</p>
+    </div>
+    <div class="gallery-item">
+      <img src="movie.jpeg" onclick="openModal(this.src)">
+      <p>Waiting for the movie 🎬</p>
+    </div>
+    <div class="gallery-item">
+      <video src="movie.mp4" controls muted></video>
+      <p>Materialists 💯</p>
+    </div>
+    <div class="gallery-item">
+      <img src="food.jpeg" alt="Lunch at Din Tai Fung" onclick="openModal(this.src)">
+      <p>Our first bite 🥟</p>
+    </div>
+    <div class="gallery-item">
+      <video src="choco.mp4" controls muted></video>
+      <p>Our little toast hehehe</p>
+    </div>
+    <div class="gallery-item">
+      <img src="dessert.jpeg" alt="Dessert" onclick="openModal(this.src)">
+      <p>End with dessert 🍦</p>
+    </div>
+    <div class="gallery-item">
+      <video src="loopy.mp4" controls muted></video>
+      <p>Gachaponnn</p>
+    </div>
+    <div class="gallery-item">
+      <video src="loopy1.mp4" controls muted></video>
+      <p>Baby so cute</p>
+    </div>
+    <div class="gallery-item">
+      <img src="loopy.jpg" alt="Loopy" onclick="openModal(this.src)">
+      <p>Our little loopy</p>
+    </div>
+    <div class="gallery-item">
+      <img src="booth.jpeg" alt="Photo booth" onclick="openModal(this.src)">
+      <p>Our first photobooth 📸</p>
+    </div> 
+    <div class="gallery-item">
+      <video src="booth.mp4" controls muted></video>
+      <p>"Look at the camera" 😂</p>
+    </div> 
+    <div class="gallery-item">
+      <img src="booth1.jpeg" alt="Photo booth" onclick="openModal(this.src)">
+      <p>So cuteeeee 🥰</p>
+    </div> 
+  </div>
+
+  <!-- Cute letter -->
+  <div class="letter-container">
+    <img src="letter.jpg" alt="Open Love Letter" onclick="openLetter()">
+    <p style="font-size:0.9rem; color:#9c2658; margin-top:8px;">Click to open my love letter 💌</p>
+  </div>
+
+  <!-- Letter modal -->
+  <div id="letterModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLetter()">&times;</span>
+      <p>
+        Dear Ella 💖,<br><br>
+        You never asked me to be anything more than who I am. You always tell me to just be myself, and somehow that made me want to become everything you deserve. I will never grow tired of learning how to love you better. All I want is to make you the happiest, and I promise to always be by your side, supporting you in everything.<br><br>
+        Yours always,<br>
+        Stephen❤️
+      </p>
+    </div>
+  </div>
+
+  <!-- Floating fireflies -->
+  <script>
+    // Fireflies
+    for (let i = 0; i < 25; i++) {
+      const firefly = document.createElement("div");
+      firefly.className = "firefly";
+      firefly.style.top = Math.random() * window.innerHeight + "px";
+      firefly.style.left = Math.random() * window.innerWidth + "px";
+      firefly.style.animationDuration = 5 + Math.random() * 15 + "s";
+      document.body.appendChild(firefly);
+    }
+
+    // Love letter modal
+    function openLetter() {
+      document.getElementById("letterModal").style.display = "flex";
+    }
+    function closeLetter() {
+      document.getElementById("letterModal").style.display = "none";
+    }
+
+    // Image modal
+    function openModal(src) {
+      const w = window.open();
+      w.document.write('<img src="' + src + '" style="max-width:100%;height:auto;">');
+    }
+  </script>
+</body>
+</html>
